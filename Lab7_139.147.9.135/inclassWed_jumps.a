@@ -1,0 +1,29 @@
+.pos 0x610
+        lodi R0,   0x2
+        lodi R1,   0xA
+        lodi R2,   0x5
+        lodi R3,   0x0
+        stord (BP + 0x2), R3
+        addr  SP,   R0
+        mov  SP,   AC
+labelB:
+        subr  R3,   R1
+        jmpn labelC
+        jmp  labelD
+labelC: 
+        subr  R3,   R2
+        jmpn labelF
+        jmp  labelE
+labelF: 
+        addi R3,   0x1
+        mov  R3,   AC
+        stord (BP + 0x2), R3
+        jmp  labelA
+labelE: 
+        addi R3,   0x2
+        mov  R3,   AC
+        stord (BP + 0x2), R3
+labelA: 
+        jmp labelB
+labelD: 
+        halt

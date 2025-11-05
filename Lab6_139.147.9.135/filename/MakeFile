@@ -1,0 +1,26 @@
+CC = gcc
+CFLAGS = -Wall -g
+TARGET = calc
+OBJS = main.o fetch_decode.o execute.o registers.o
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
+
+main.o: main.c fetch_decode.h registers.h
+	$(CC) $(CFLAGS) -c main.c
+
+fetch_decode.o: fetch_decode.c fetch_decode.h execute.h
+	$(CC) $(CFLAGS) -c fetch_decode.c
+
+execute.o: execute.c execute.h registers.h
+	$(CC) $(CFLAGS) -c execute.c
+
+registers.o: registers.c registers.h
+	$(CC) $(CFLAGS) -c registers.c
+
+clean:
+	rm -f $(OBJS) $(TARGET)
+
+.PHONY: all clean
