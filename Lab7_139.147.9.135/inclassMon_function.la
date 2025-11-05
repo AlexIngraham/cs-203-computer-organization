@@ -1,0 +1,35 @@
+.file inclassMon_function.la
+.format SSAM-label-assembly
+
+        main:
+0x0610    lodi R0, 0x2
+0x0612    lodi R2, 0x4
+0x0614    mov R3, SP
+0x0616    addr R3, R0
+0x0618    mov SP, AC
+0x061a    stord (BP + 4), R2
+0x061c    mov R3, SP
+0x061e    addr R3, R0
+0x0620    mov SP, AC
+0x0622    stord (BP + 6), R2
+0x0624    call fun
+0x0626    halt
+
+        fun:
+0x0628    lodi R0, 0x2
+0x062a    lodi R2, 0x1
+0x062c    mov R3, SP
+0x062e    addr R3, R0
+0x0630    mov SP, AC
+0x0632    lodrd R1, (BP + -4)
+0x0634    addr R1, R1
+0x0636    jmpz labela
+0x0638    mov R3, SP
+0x063a    addr R3, R0
+0x063c    mov SP, AC
+0x063e    subr R1, R2
+0x0640    stord (BP + 4), AC
+0x0642    call fun
+
+        labela:
+0x0644    ret

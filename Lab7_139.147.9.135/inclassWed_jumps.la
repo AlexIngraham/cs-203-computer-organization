@@ -1,0 +1,36 @@
+.file inclassWed_jumps.la
+.format SSAM-label-assembly
+0x0610    lodi R0, 0x2
+0x0612    lodi R1, 0xA
+0x0614    lodi R2, 0x5
+0x0616    lodi R3, 0x0
+0x0618    stord (BP + 0x2), R3
+0x061a    addr SP, R0
+0x061c    mov SP, AC
+
+        labelB:
+0x061e    subr R3, R1
+0x0620    jmpn labelC
+0x0622    jmp labelD
+
+        labelC:
+0x0624    subr R3, R2
+0x0626    jmpn labelF
+0x0628    jmp labelE
+
+        labelF:
+0x062a    addi R3, 0x1
+0x062c    mov R3, AC
+0x062e    stord (BP + 0x2), R3
+0x0630    jmp labelA
+
+        labelE:
+0x0632    addi R3, 0x2
+0x0634    mov R3, AC
+0x0636    stord (BP + 0x2), R3
+
+        labelA:
+0x0638    jmp labelB
+
+        labelD:
+0x063a    halt

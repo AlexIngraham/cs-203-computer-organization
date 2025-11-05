@@ -1,0 +1,56 @@
+.pos 0x610
+main:
+  lodi  R0,     0x2       ; initialize stack incr
+  lodi  R2,     0x4       ; initialize x
+
+  mov   R3,     SP        ; incr stack for x
+  addr  R3,     R0
+  mov   SP,     AC
+  stord  (BP + 4), R2     ; and store 4
+
+  mov   R3,     SP        ; incr stack for x
+  addr  R3,     R0
+  mov   SP,     AC
+  stord  (BP + 6), R2     ; and store x as parameter
+
+  call  fun               ; call function
+  halt                    ; exit program
+
+fun: 
+  lodi   R0,     0x2      ; initialize
+  lodi   R2,     0x1
+  mov    R3,     SP       ; incr stack for x
+  addr   R3,     R0
+  mov    SP,     AC
+  lodrd  R1,     (BP + -4) ; get cnt
+  addr   R1,     R1        ; check if condition
+  jmpz   labela
+  mov    R3,     SP        ; incr stack for param
+  addr   R3,     R0
+  mov    SP,     AC
+  subr   R1,     R2        ; perform cnt - 1 and store
+  stord  (BP + 4), AC     
+  call  fun               ; call function
+
+labela: 
+  ret
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
